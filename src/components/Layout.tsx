@@ -9,6 +9,9 @@ const Layout: React.FC = () => {
           <li>
             <Link to='/'>Home</Link>
           </li>
+          <li>
+            <Link to='#'>Create new post</Link>
+          </li>
         </ul>
       </nav>
 

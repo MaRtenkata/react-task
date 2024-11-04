@@ -1,7 +1,9 @@
-import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import { useState } from 'react';
+// import FilterButtons from '../components/FilterButtons';
+import useFetch from '../utils/hooks/useFetch';
+import Pagination from '../components/Paginator';
 
-interface PostInterface {
+export interface PostProps {
   id: number;
   userId: number;
   title: string;
@@ -11,42 +13,37 @@ interface PostInterface {
 const TEST_URL = 'https://jsonplaceholder.typicode.com';
 
 const Home: React.FC = () => {
-  const [loading, setLoading] = useState(false);
-  const [posts, setPosts] = useState([]);
+  const { data, loading } = useFetch(`${TEST_URL}/posts`);
+  const [currentPage, setCurrentPage] = useState(1);
 
-  useEffect(() => {
-    const getPosts = async () => {
-      try {
-        setLoading(true);
+  // const userIds = [...new Set(data.map((val: PostInterface) => val.userId))];
 
-        // api request
-        const response = await axios.get(`${TEST_URL}posts`);
+  const indexOfLastPost = currentPage * 20;
+  const indexOfFirstPost = indexOfLastPost - 20;
+  const currentPosts = data.slice(indexOfFirstPost, indexOfLastPost);
 
-        const data = response.data;
-        setPosts(data);
-
-        setLoading(false);
-      } catch (error) {
-        setLoading(false);
-        alert(error);
-      }
-    };
-
-    getPosts();
-  }, []);
+  const handlePageNumberClick = (pageNumber: number) =>
+    setCurrentPage(pageNumber);
 
   return (
     <div>
-      <h2 className=''>Post list</h2>
-      <div className='flexbox-container wrap'>
+      <h2>Post list</h2>
+      {/* <FilterButtons userIds={userIds} /> */}
+      <div>
         {loading
           ? 'Loading...'
-          : posts.map((post: PostInterface) => (
-              <div className='post-card' key={post.id}>
-                <h4 className='card-title'>{post.title}</h4>
-                <p className='card-desc'>{post.body.substring(0, 50)}</p>
+          : currentPosts.map((post: PostProps) => (
+              <div key={post.id}>
+                <h4>{post.title}</h4>
+                <p>{post.body.substring(0, 50)}</p>
               </div>
             ))}
+        <Pagination
+          totalPosts={data.length}
+          postsPerPage={20}
+          handlePageNumberClick={handlePageNumberClick}
+          currentPage={currentPage}
+        />
       </div>
     </div>
   );
