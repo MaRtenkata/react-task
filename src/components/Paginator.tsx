@@ -1,3 +1,5 @@
+import styles from '../styles/Paginator.module.css';
+
 // Pagination Component
 interface PaginationProps {
   totalPosts: number;
@@ -18,9 +20,9 @@ const Pagination: React.FC<PaginationProps> = ({
   }
 
   return (
-    <ul>
+    <ul className={styles.container}>
       {pageNumbers.map((number) => (
-        <li key={number}>
+        <li className={styles.containerItem} key={number}>
           <button
             onClick={() => handlePageNumberClick(number)}
             style={{ fontWeight: number === currentPage ? 'bold' : 'normal' }}

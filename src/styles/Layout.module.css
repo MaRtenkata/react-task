@@ -1,0 +1,29 @@
+.navbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 50px;
+    box-shadow: 0 1px 8px #ddd;
+
+
+}
+
+.navbarMenu {
+    list-style-type: none;
+
+}
+
+.navbarMenuItem {
+    display: inline-block;
+    padding: 0 20px;
+}
+
+.navbarMenuItemLink {
+    text-decoration: none;
+    color: #555;
+    transition: all 0.3s ease 0s;
+}
+
+.navbarMenuItemLink:hover {
+    color: aquamarine;
+}

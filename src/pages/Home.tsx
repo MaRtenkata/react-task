@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react';
-// import FilterButtons from '../components/FilterButtons';
 import useFetch from '../utils/hooks/useFetch';
+import styles from '../styles/Home.module.css';
 import Pagination from '../components/Paginator';
 
 import Filter from '../components/Filter';
@@ -43,8 +43,8 @@ const Home: React.FC = () => {
   };
 
   return (
-    <div>
-      <h2>Post list</h2>
+    <div className={styles.container}>
+      <h2 className={styles.contanerTitle}>Post list</h2>
       <Filter
         posts={postData}
         handleUserIdChange={handleUserIdChange}
@@ -54,8 +54,9 @@ const Home: React.FC = () => {
         {loading
           ? 'Loading...'
           : postData.map((post: PostProps) => (
-              <div key={post.id}>
-                <h4>{post.title}</h4>
+              <div className={styles.postContainer} key={post.id}>
+                <h4 className={styles.postTitle}>{post.title}</h4>
+                <div className={styles.separator}></div>
                 <p>{post.body}</p>
               </div>
             ))}
