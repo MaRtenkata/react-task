@@ -14,7 +14,7 @@ const Layout: React.FC = () => {
               </Link>
             </li>
             <li className={styles.navbarMenuItem}>
-              <Link className={styles.navbarMenuItemLink} to='#'>
+              <Link className={styles.navbarMenuItemLink} to='/newPost'>
                 Create new post
               </Link>
             </li>

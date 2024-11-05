@@ -7,7 +7,7 @@ import Filter from '../components/Filter';
 
 export interface PostProps {
   id: number;
-  userId: number;
+  userId: number | null;
   title: string;
   body: string;
 }
