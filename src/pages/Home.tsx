@@ -28,8 +28,8 @@ const Home: React.FC = () => {
 
   const postData = useMemo(() => {
     const posts = data;
-    const indexOfLastPost = currentPage * 20;
-    const indexOfFirstPost = indexOfLastPost - 20;
+    const indexOfLastPost = currentPage * postPerPage;
+    const indexOfFirstPost = indexOfLastPost - postPerPage;
 
     return posts.slice(indexOfFirstPost, indexOfLastPost);
   }, [currentPage, data]);
