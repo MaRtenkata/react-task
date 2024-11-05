@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 
 function useFetch(url: string) {
   const [data, setData] = useState([]);
-
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -20,7 +19,7 @@ function useFetch(url: string) {
     };
 
     fetchData();
-  }, [url]); // Dependency array with URL to avoid unnecessary re-fetching
+  }, [url]);
 
   return { data, loading };
 }
