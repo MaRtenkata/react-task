@@ -44,7 +44,7 @@ const Home: React.FC = () => {
 
   return (
     <div className={styles.container}>
-      <h2 className={styles.contanerTitle}>Post list</h2>
+      <h2>Post list</h2>
       <Filter
         posts={postData}
         handleUserIdChange={handleUserIdChange}

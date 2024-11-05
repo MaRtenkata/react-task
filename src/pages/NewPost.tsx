@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { getRandomArbitrary } from '../utils/getRandomArbitrary';
 import { PostProps } from './Home';
 import axios from 'axios';
+import styles from '../styles/NewPost.module.css';
 import { useNavigate } from 'react-router-dom';
 
 const initialFormData: PostProps = {
@@ -44,20 +45,36 @@ const NewPost: React.FC = () => {
   };
 
   return (
-    <>
-      <form onSubmit={handleSubmit}>
-        <label>
+    <div className={styles.container}>
+      <h2>New post</h2>
+      <form className={styles.form} onSubmit={handleSubmit}>
+        <label className={styles.formItemLable}>
           Title:
-          <input onChange={handleChange} type='text' name='title' required />
+          <input
+            className={styles.formItemInput}
+            onChange={handleChange}
+            type='text'
+            name='title'
+            required
+          />
         </label>
-        <label>
+        <label className={styles.formItemLable}>
           Body:
-          <textarea onChange={handleChange} name='body' required />
+          <textarea
+            className={styles.formItemInput}
+            onChange={handleChange}
+            name='body'
+            required
+          />
         </label>
 
-        <input type='submit' value={`${loading ? 'Adding...' : 'Add'}`} />
+        <input
+          className={styles.formButton}
+          type='submit'
+          value={`${loading ? 'Adding...' : 'Add'}`}
+        />
       </form>
-    </>
+    </div>
   );
 };
 

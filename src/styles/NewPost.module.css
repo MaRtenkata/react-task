@@ -1,0 +1,39 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 60px;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 50px;
+    box-shadow: 0 1px 8px #ddd;
+}
+
+.formItemLable {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    align-items: center;
+}
+
+.formButton {
+    padding: 10px 20px;
+    background-color: aquamarine;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 1px 8px #ddd;
+}
+
+.formItemInput {
+    padding: 10px 20px;
+    background-color: #ddd;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 1px 8px #ddd;
+}
