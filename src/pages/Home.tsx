@@ -17,12 +17,11 @@ const TEST_URL = 'https://jsonplaceholder.typicode.com';
 const Home: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [userId, setUserId] = useState<number | null>(null);
+  const postPerPage = 20;
 
   const url = userId
     ? `${TEST_URL}/posts?userId=${userId}`
     : `${TEST_URL}/posts`;
-
-  const postPerPage = 20;
 
   const { data, loading } = useFetch(url);
 
