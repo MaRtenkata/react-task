@@ -17,7 +17,7 @@ const Filter: React.FC<FilterButtonsInterface> = ({
       <select onChange={handleUserIdChange} value={userId || ''}>
         <option value=''>All</option>
         {[...new Set(posts.map((post) => post.userId))].map((id) => (
-          <option key={id} value={id}>
+          <option key={id} value={id || ''}>
             User {id}
           </option>
         ))}
