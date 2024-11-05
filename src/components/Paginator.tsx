@@ -1,19 +1,19 @@
 // Pagination Component
 interface PaginationProps {
   totalPosts: number;
-  postsPerPage: number;
   handlePageNumberClick: (pageNumber: number) => void;
   currentPage: number;
+  postPerPage: number;
 }
 
 const Pagination: React.FC<PaginationProps> = ({
   totalPosts,
-  postsPerPage,
   handlePageNumberClick,
   currentPage,
+  postPerPage,
 }) => {
   const pageNumbers = [];
-  for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {
+  for (let i = 1; i <= Math.ceil(totalPosts / postPerPage); i++) {
     pageNumbers.push(i);
   }
 
