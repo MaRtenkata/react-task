@@ -1,6 +1,5 @@
 import styles from '../styles/Paginator.module.css';
 
-// Pagination Component
 interface PaginationProps {
   totalPosts: number;
   handlePageNumberClick: (pageNumber: number) => void;
