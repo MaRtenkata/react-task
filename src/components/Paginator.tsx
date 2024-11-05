@@ -1,23 +1,16 @@
 import styles from '../styles/Paginator.module.css';
 
 interface PaginationProps {
-  totalPosts: number;
   handlePageNumberClick: (pageNumber: number) => void;
   currentPage: number;
-  postPerPage: number;
+  pageNumbers: number[];
 }
 
 const Pagination: React.FC<PaginationProps> = ({
-  totalPosts,
   handlePageNumberClick,
+  pageNumbers,
   currentPage,
-  postPerPage,
 }) => {
-  const pageNumbers = [];
-  for (let i = 1; i <= Math.ceil(totalPosts / postPerPage); i++) {
-    pageNumbers.push(i);
-  }
-
   return (
     <ul className={styles.container}>
       {pageNumbers.map((number) => (

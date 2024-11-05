@@ -4,6 +4,7 @@ import { PostProps } from './Home';
 import axios from 'axios';
 import styles from '../styles/NewPost.module.css';
 import { useNavigate } from 'react-router-dom';
+import Navbar from '../components/Navbar';
 
 const initialFormData: PostProps = {
   title: '',
@@ -45,36 +46,39 @@ const NewPost: React.FC = () => {
   };
 
   return (
-    <div className={styles.container}>
-      <h2>New post</h2>
-      <form className={styles.form} onSubmit={handleSubmit}>
-        <label className={styles.formItemLable}>
-          Title:
-          <input
-            className={styles.formItemInput}
-            onChange={handleChange}
-            type='text'
-            name='title'
-            required
-          />
-        </label>
-        <label className={styles.formItemLable}>
-          Body:
-          <textarea
-            className={styles.formItemInput}
-            onChange={handleChange}
-            name='body'
-            required
-          />
-        </label>
+    <>
+      <Navbar />
+      <div className={styles.container}>
+        <h2>New post</h2>
+        <form className={styles.form} onSubmit={handleSubmit}>
+          <label className={styles.formItemLable}>
+            Title:
+            <input
+              className={styles.formItemInput}
+              onChange={handleChange}
+              type='text'
+              name='title'
+              required
+            />
+          </label>
+          <label className={styles.formItemLable}>
+            Body:
+            <textarea
+              className={styles.formItemInput}
+              onChange={handleChange}
+              name='body'
+              required
+            />
+          </label>
 
-        <input
-          className={styles.formButton}
-          type='submit'
-          value={`${loading ? 'Adding...' : 'Add'}`}
-        />
-      </form>
-    </div>
+          <input
+            className={styles.formButton}
+            type='submit'
+            value={`${loading ? 'Adding...' : 'Add'}`}
+          />
+        </form>
+      </div>
+    </>
   );
 };
 

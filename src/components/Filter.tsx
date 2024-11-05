@@ -1,26 +1,19 @@
-import React, { useMemo } from 'react';
-import { PostProps } from '../pages/Home';
-
-interface FilterButtonsInterface {
-  userId: number | null;
+interface FilterProps {
   handleUserIdChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
-  posts: PostProps[];
+  options: string[] | number[];
+  value?: string | number;
 }
 
-const Filter: React.FC<FilterButtonsInterface> = ({
-  userId,
+const Filter: React.FC<FilterProps> = ({
   handleUserIdChange,
-  posts,
+  options,
+  value,
 }) => {
-  const userIds = useMemo(() => {
-    return [...new Set(posts.map((post) => post.userId))];
-  }, [posts]);
-
   return (
     <>
-      <select onChange={handleUserIdChange} value={userId || ''}>
+      <select onChange={handleUserIdChange} value={value || ''}>
         <option value=''>All</option>
-        {userIds.map((id) => (
+        {options.map((id) => (
           <option key={id} value={id || ''}>
             User {id}
           </option>
