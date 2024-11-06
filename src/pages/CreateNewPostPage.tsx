@@ -25,7 +25,6 @@ const CreateNewPostPage: React.FC = () => {
   return (
     <>
       <Navbar />
-
       <div className={styles.container}>
         <h2>New post</h2>
         <ToastContainer />

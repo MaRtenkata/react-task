@@ -59,7 +59,7 @@ const Home: React.FC = () => {
           {error && 'An error occured'}
           <Pagination
             handlePageNumberClick={handlePageNumberClick}
-            pageNumbers={getPageNumbers(data.length, POST_PER_PAGE)}
+            pageNumbers={calcPageNumbers(data.length, POST_PER_PAGE)}
             currentPage={currentPage}
           />
         </div>
@@ -68,7 +68,7 @@ const Home: React.FC = () => {
   );
 };
 
-const getPageNumbers = (totalPosts: number, postPerPage: number) => {
+const calcPageNumbers = (totalPosts: number, postPerPage: number) => {
   const pageNumbers = [];
   for (let i = 1; i <= Math.ceil(totalPosts / postPerPage); i++) {
     pageNumbers.push(i);
