@@ -2,44 +2,29 @@ import { useMemo, useState } from 'react';
 import useFetch from '../hooks/useFetch';
 import styles from '../styles/Home.module.css';
 import Pagination from '../components/Paginator';
-
 import Filter from '../components/Filter';
 import Navbar from '../components/Navbar';
-import { getPageNumbers } from '../utils/getPageNumbers';
-
-export interface PostProps {
-  id: number;
-  userId: number;
-  title: string;
-  body: string;
-}
-
-const TEST_URL = 'https://jsonplaceholder.typicode.com';
+import Post, { PostProps } from '../components/Post';
+import { API_URL, POST_PER_PAGE } from '../config';
 
 const Home: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
-  const [userId, setUserId] = useState<number | undefined>();
-  const postPerPage = 20;
+  const [userId, setUserId] = useState<number>();
 
-  const url = userId
-    ? `${TEST_URL}/posts?userId=${userId}`
-    : `${TEST_URL}/posts`;
+  const url = userId ? `${API_URL}/posts?userId=${userId}` : `${API_URL}/posts`;
 
-  const { data, loading } = useFetch(url);
+  const { data, loading, error } = useFetch(url);
 
   const postData = useMemo(() => {
-    const posts: PostProps[] = data;
-    const indexOfLastPost = currentPage * postPerPage;
-    const indexOfFirstPost = indexOfLastPost - postPerPage;
+    const indexOfLastPost = currentPage * POST_PER_PAGE;
+    const indexOfFirstPost = indexOfLastPost - POST_PER_PAGE;
 
-    return posts.slice(indexOfFirstPost, indexOfLastPost);
+    return data.slice(indexOfFirstPost, indexOfLastPost);
   }, [currentPage, data]);
 
   const userIds = useMemo(() => {
-    return [...new Set(postData.map((post) => post.userId))];
+    return [...new Set(postData.map((post: PostProps) => post.userId))];
   }, [postData]);
-
-  const pageNumbers = getPageNumbers(data.length, postPerPage);
 
   const handlePageNumberClick = (pageNumber: number) =>
     setCurrentPage(pageNumber);
@@ -63,21 +48,33 @@ const Home: React.FC = () => {
           {loading
             ? 'Loading...'
             : postData.map((post: PostProps) => (
-                <div className={styles.postContainer} key={post.id}>
-                  <h4 className={styles.postTitle}>{post.title}</h4>
-                  <div className={styles.separator}></div>
-                  <p>{post.body}</p>
-                </div>
+                <Post
+                  key={post.id}
+                  id={post.id}
+                  title={post.title}
+                  body={post.body}
+                  userId={userId}
+                />
               ))}
+          {error && 'An error occured'}
           <Pagination
             handlePageNumberClick={handlePageNumberClick}
-            pageNumbers={pageNumbers}
+            pageNumbers={getPageNumbers(data.length, POST_PER_PAGE)}
             currentPage={currentPage}
           />
         </div>
       </div>
     </>
   );
+};
+
+const getPageNumbers = (totalPosts: number, postPerPage: number) => {
+  const pageNumbers = [];
+  for (let i = 1; i <= Math.ceil(totalPosts / postPerPage); i++) {
+    pageNumbers.push(i);
+  }
+
+  return pageNumbers;
 };
 
 export default Home;

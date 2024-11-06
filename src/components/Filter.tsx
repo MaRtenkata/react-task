@@ -1,6 +1,6 @@
 interface FilterProps {
   handleUserIdChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
-  options: string[] | number[];
+  options: (number | undefined)[];
   value?: string | number;
 }
 

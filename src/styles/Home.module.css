@@ -5,30 +5,3 @@
     align-items: center;
     padding: 30px 60px;
 }
-
-.postContainer {
-    box-shadow: 0 1px 8px #ddd;
-    padding: 20px 50px;
-    margin-bottom: 20px;
-    margin-top: 20px;
-}
-
-.postTitle {
-    font-size: 18px;
-    margin-top: 25px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-}
-
-p {
-    font-size: 12px;
-}
-
-
-.separator {
-    margin-bottom: 30px;
-    width: 35px;
-    height: 3px;
-    background: #777;
-    border: none;
-}
